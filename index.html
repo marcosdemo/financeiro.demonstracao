@@ -83,7 +83,7 @@ dialog::backdrop{background:rgba(10,25,23,.45)}
 @media(max-width:980px){.kpis{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
 @media(max-width:820px){
  main{padding:12px}.top{padding:10px 14px}.btn span.t{display:none}
- .hint{display:block}.tabs{width:100%}.tabs button{flex:1;justify-content:center;padding:9px 8px}
+ .tabs{width:100%}.tabs button{flex:1;justify-content:center;padding:9px 8px}
  table{font-size:12px}th,td{padding:10px 9px}
  th:first-child,td:first-child{position:sticky;left:0;z-index:1;background:#fff;box-shadow:1px 0 0 var(--line)}
  th:first-child{background:#fafbfa}
@@ -128,6 +128,51 @@ dialog::backdrop{background:rgba(10,25,23,.45)}
 .gc .stk{height:12px;box-shadow:0 4px 14px -2px rgba(245,158,11,.45)}
 @media(max-width:980px){.gg{grid-template-columns:1fr 1fr}.gg .c4{grid-column:1/-1}.gg .c2{grid-column:span 1}}
 @media(max-width:620px){.gg{grid-template-columns:1fr}.gg .c2,.gg .c4{grid-column:1/-1}.gc .dn{flex-wrap:wrap}}
+
+/* ===== Layout fixo: tabela com rolagem interna ===== */
+html,body{height:100%}
+body{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+header{position:static;flex:none}
+main{flex:1;min-height:0;overflow:auto;width:100%;display:flex;flex-direction:column}
+.views{flex:none}
+#vL{flex:1;min-height:0;display:flex;flex-direction:column}
+#vL>*{flex:none}
+#vL>.tw{flex:1;min-height:260px;display:flex;flex-direction:column;overflow:hidden}
+.tbs{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
+.tw .foot{flex:none;background:#fff}
+.tbs th{position:sticky;top:0;z-index:2}
+.tbs th:last-child{top:0;z-index:3}
+.hint{display:none!important}
+.months{height:120px}.mc .p{height:80px}
+@media(max-width:820px){
+ main{padding:10px}
+ .views{margin-bottom:8px}
+ .kpis{grid-template-columns:1fr 1fr;gap:8px}
+ .kpi{padding:8px 12px}.kpi b{font-size:16px;margin-top:1px}.kpi i{display:none}.kpi span{font-size:12px}
+ .g2{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;margin-top:8px;padding-bottom:2px}
+ .g2>.card{flex:0 0 88%;scroll-snap-align:start;height:138px;overflow:auto;padding:10px 14px}
+ .g2 .bar{margin-top:7px}.months{height:84px;margin-top:6px}.mc .p{height:56px}.g2 .leg{margin-top:4px}
+ .tabs{margin-top:10px}
+ .filters{margin:8px 0}.filters input{flex:1 1 100%}.filters select{flex:1 1 40%}
+ #vL>.tw{min-height:300px}
+ /* tabela vira lista de cartões */
+ .tbs table,.tbs tbody,.tbs tr,.tbs td{display:block}
+ .tbs table{white-space:normal}.tbs thead{display:none}
+ .tbs tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;padding:12px 14px;border-bottom:1px solid var(--line)}
+ .tbs tbody tr:last-child{border-bottom:0}
+ .tbs td,.tbs td:first-child{position:static;box-shadow:none;background:none;padding:0;border:0;min-width:0;white-space:normal;text-align:left;font-size:13px}
+ .tbs td:nth-child(10){min-width:0}
+ .tbs td::before{content:attr(data-l);display:block;font-size:10.5px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.03em;margin-bottom:1px}
+ .tbs td.act::before{display:none}
+ .tbs td:nth-child(10){grid-column:1/-1;order:1;font-size:14.5px}.tbs td:nth-child(10)::before{display:none}
+ .tbs td:nth-child(11){order:2;font-size:16px}
+ .tbs td:nth-child(12){order:3}
+ .tbs td:nth-child(2){order:4}.tbs td:nth-child(3){order:5}.tbs td:nth-child(4){order:6}
+ .tbs td:nth-child(6){order:7}.tbs td:nth-child(7){order:8}.tbs td:nth-child(5){order:9}
+ .tbs td:nth-child(8){order:10}.tbs td:nth-child(9){order:11}.tbs td:nth-child(1){order:12}
+ .tbs td.act{order:13;grid-column:1/-1;display:flex;justify-content:flex-end;gap:6px;box-shadow:none;background:none;border-top:1px solid var(--line);padding-top:6px}
+ .tbs td.empty{grid-column:1/-1}
+}
 </style>
 </head>
 <body>
@@ -156,10 +201,10 @@ dialog::backdrop{background:rgba(10,25,23,.45)}
 
  <p class="hint">↔ Deslize a tabela para o lado para ver todas as colunas</p>
  <div class="card tw">
-  <table>
+  <div class="tbs"><table>
    <thead><tr><th>Nº</th><th>Tipo</th><th>Vencimento</th><th>Pgto / Receb.</th><th>Parcela</th><th>Conta / Cartão</th><th>Categoria</th><th>Compra</th><th>Qtd</th><th>Descrição</th><th class="th-r">Valor</th><th>Status</th><th></th></tr></thead>
    <tbody id="tb"></tbody>
-  </table>
+  </table></div>
   <div class="foot"><span id="cnt"></span><span id="tot"></span></div>
  </div>
 </div>
