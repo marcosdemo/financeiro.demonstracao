@@ -108,6 +108,26 @@ dialog::backdrop{background:rgba(10,25,23,.45)}
 .rk{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.rk:last-child{border:0}
 .rk small{display:block;color:var(--mut);font-size:12px}.rk .v{white-space:nowrap}
 @media(max-width:980px){.gg{grid-template-columns:1fr}}
+
+/* ===== Gráficos modernos ===== */
+.gg{grid-template-columns:repeat(6,1fr);gap:14px}
+.gg .c2{grid-column:span 2}.gg .c4{grid-column:span 4}
+.gc{position:relative;overflow:hidden;padding:15px 16px 18px;isolation:isolate}
+.gc::after{content:"";position:absolute;left:12%;right:12%;bottom:-34px;height:56px;background:var(--gl);filter:blur(34px);opacity:.34;pointer-events:none;z-index:-1}
+.gc h2{display:flex;align-items:center;gap:8px;font-size:13.5px}
+.gc h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gl);box-shadow:0 0 0 3px color-mix(in srgb,var(--gl) 22%,transparent),0 0 12px var(--gl)}
+.gc .bar{grid-template-columns:92px 1fr auto;margin-top:10px;font-size:12.5px}
+.gc .bar div{height:7px;background:#edf2f0}
+.gc .bar div i{background:linear-gradient(90deg,var(--gl),color-mix(in srgb,var(--gl) 50%,#fff));box-shadow:0 0 10px -1px var(--gl)}
+.gc .rk{padding:7px 0;font-size:12.5px}
+.gc .lgr{padding:4px 6px;font-size:12.5px}
+.ch svg{display:block;width:100%;height:auto;max-height:210px}
+.gc .dn{gap:10px;margin-top:6px;flex-wrap:nowrap}
+.gc .dn svg{width:128px;height:128px;filter:drop-shadow(0 8px 10px rgba(99,102,241,.28))}
+.gc .lg2{min-width:0}
+.gc .stk{height:12px;box-shadow:0 4px 14px -2px rgba(245,158,11,.45)}
+@media(max-width:980px){.gg{grid-template-columns:1fr 1fr}.gg .c4{grid-column:1/-1}.gg .c2{grid-column:span 1}}
+@media(max-width:620px){.gg{grid-template-columns:1fr}.gg .c2,.gg .c4{grid-column:1/-1}.gc .dn{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -132,14 +152,6 @@ dialog::backdrop{background:rgba(10,25,23,.45)}
   <input id="q" type="search" placeholder="Pesquise qualquer coisa: descrição, valor, data, mês, conta, status…" oninput="render()" autocomplete="off" aria-label="Pesquisar em todas as colunas">
   <select id="fm" onchange="render()"></select>
   <select id="ft" onchange="render()"><option value="">Todos os tipos</option><option>Receita</option><option>Despesa</option></select>
- </div>
- <div class="shint"><span>Dicas:</span>
-  <button class="chip" onclick="setQ('nubank outubro')">nubank outubro</button>
-  <button class="chip" onclick="setQ('&gt;500')">&gt;500</button>
-  <button class="chip" onclick="setQ('cat:lazer')">cat:lazer</button>
-  <button class="chip" onclick="setQ('atrasado')">atrasado</button>
-  <button class="chip" onclick="setQ('-delivery supermercado')">-delivery supermercado</button>
-  <span>· combine termos, use <b>coluna:termo</b>, <b>&gt;</b> <b>&lt;</b> para valores, <b>-</b> para excluir e <b>/</b> para buscar</span>
  </div>
 
  <p class="hint">↔ Deslize a tabela para o lado para ver todas as colunas</p>
@@ -166,14 +178,14 @@ dialog::backdrop{background:rgba(10,25,23,.45)}
  <div class="gchips" id="gchips"></div>
  <section class="kpis" id="gkpis"></section>
  <section class="gg">
-  <div class="card w2"><h2>Receitas × despesas por mês</h2><div id="g_mes"></div><div class="leg"><span><u style="background:#0f766e"></u>Receitas</span><span><u style="background:#e11d48"></u>Despesas</span><span><u style="background:#14201e"></u>Saldo do mês</span><span>· clique em um mês para filtrar</span></div></div>
-  <div class="card"><h2 id="g_t1"></h2><div id="g_cat"></div></div>
-  <div class="card"><h2 id="g_t2"></h2><div id="g_sub"></div></div>
-  <div class="card"><h2 id="g_t3"></h2><div id="g_acc"></div></div>
-  <div class="card"><h2 id="g_t4"></h2><div id="g_car"></div></div>
-  <div class="card"><h2 id="g_t5"></h2><div id="g_sta"></div></div>
-  <div class="card"><h2>Maiores lançamentos</h2><div id="g_top"></div></div>
-  <div class="card w2"><h2>Saldo acumulado</h2><div id="g_sal"></div></div>
+  <div class="card gc c4" style="--gl:#0f766e"><h2>Receitas × despesas por mês</h2><div id="g_mes" class="ch"></div><div class="leg"><span><u style="background:#14b8a6"></u>Receitas</span><span><u style="background:#f43f5e"></u>Despesas</span><span><u style="background:#14201e"></u>Saldo do mês</span><span>· clique num mês para filtrar</span></div></div>
+  <div class="card gc c2" style="--gl:#6366f1"><h2 id="g_t1"></h2><div id="g_cat"></div></div>
+  <div class="card gc c2" style="--gl:#0ea5e9"><h2 id="g_t2"></h2><div id="g_sub"></div></div>
+  <div class="card gc c2" style="--gl:#0f766e"><h2 id="g_t3"></h2><div id="g_acc"></div></div>
+  <div class="card gc c2" style="--gl:#d946ef"><h2 id="g_t4"></h2><div id="g_car"></div></div>
+  <div class="card gc c2" style="--gl:#f59e0b"><h2 id="g_t5"></h2><div id="g_sta"></div></div>
+  <div class="card gc c2" style="--gl:#e11d48"><h2>Maiores lançamentos</h2><div id="g_top"></div></div>
+  <div class="card gc c2" style="--gl:#14b8a6"><h2>Saldo acumulado</h2><div id="g_sal" class="ch"></div></div>
  </section>
 </div>
 </main>
@@ -420,17 +432,18 @@ function gf(ign=[]){const Q=parseQ(G.q),I=k=>ign.includes(k);
  return D.filter(x=>{const m=x.venc.slice(0,7);return(I('from')||!G.from||m>=G.from)&&(I('to')||!G.to||m<=G.to)&&(!G.tipo||x.tipo===G.tipo)&&(I('status')||!G.status||st(x)===G.status)&&(I('conta')||!G.conta||x.conta===G.conta)&&(I('cartao')||!G.cartao||x.cartao===G.cartao)&&(I('cat')||!G.cat||x.cat===G.cat)&&(I('sub')||!G.sub||x.sub===G.sub)&&matchQ(x,Q)})}
 const hbars=(rows,g,sel)=>{const mx=rows[0]?rows[0][1]:1;return rows.map(([l,v,k])=>`<div class="bar sel${sel&&sel!==(k||l)?' dim':''}" data-g="${g}" data-v="${esc(k||l)}" title="${esc(l)}"><span>${esc(l)}</span><div><i style="width:${v/mx*100}%"></i></div><b>${brl(v)}</b></div>`).join('')||EMPTY};
 function grid(W,H,pl,pr,pt,pb,lo,top){const Y=v=>pt+(top-v)/(top-lo)*(H-pt-pb);let o='';for(let i=0;i<=4;i++){const v=lo+(top-lo)*i/4;o+=`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e5eae8"/><text x="${pl-5}" y="${Y(v)+3}" text-anchor="end" font-size="9.5" fill="#667571">${kfmt(v)}</text>`}return[Y,o]}
+const GDEF='<defs><linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#0f766e"/></linearGradient><linearGradient id="gD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fb7185"/><stop offset="1" stop-color="#be123c"/></linearGradient><linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14b8a6" stop-opacity=".45"/><stop offset="1" stop-color="#14b8a6" stop-opacity="0"/></linearGradient><filter id="glw" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
 function gMes(){const bm={};gf(['from','to']).forEach(x=>{const m=x.venc.slice(0,7);(bm[m]=bm[m]||{R:0,D:0})[x.tipo==='Receita'?'R':'D']+=x.valor});
  const ks=Object.keys(bm).sort().slice(-12);if(!ks.length)return EMPTY;
- const W=640,H=250,pl=40,pr=8,pt=12,pb=26,sal=ks.map(k=>bm[k].R-bm[k].D),top=Math.max(1,...ks.map(k=>Math.max(bm[k].R,bm[k].D)),...sal),lo=Math.min(0,...sal),[Y,gr]=grid(W,H,pl,pr,pt,pb,lo,top),sw=(W-pl-pr)/ks.length,bw=Math.min(20,sw*.32),rng=G.from||G.to;
- let o=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">`+gr;
+ const W=600,H=200,pl=36,pr=8,pt=10,pb=24,sal=ks.map(k=>bm[k].R-bm[k].D),top=Math.max(1,...ks.map(k=>Math.max(bm[k].R,bm[k].D)),...sal),lo=Math.min(0,...sal),[Y,gr]=grid(W,H,pl,pr,pt,pb,lo,top),sw=(W-pl-pr)/ks.length,bw=Math.min(16,sw*.3),rng=G.from||G.to;
+ let o=`<svg viewBox="0 0 ${W} ${H}">${GDEF}`+gr;
  ks.forEach((k,i)=>{const cx=pl+sw*(i+.5),d=rng&&!((!G.from||k>=G.from)&&(!G.to||k<=G.to)),r=bm[k].R,dd=bm[k].D;
-  o+=`<g data-g="month" data-v="${k}" style="cursor:pointer;opacity:${d?.3:1}"><title>${mlabel(k)}\nReceitas: ${brl(r)}\nDespesas: ${brl(dd)}\nSaldo: ${brl(r-dd)}</title><rect x="${cx-sw/2}" y="${pt}" width="${sw}" height="${H-pt-pb}" fill="transparent"/><rect x="${cx-bw-1}" y="${Y(r)}" width="${bw}" height="${Y(0)-Y(r)}" rx="3" fill="#0f766e"/><rect x="${cx+1}" y="${Y(dd)}" width="${bw}" height="${Y(0)-Y(dd)}" rx="3" fill="#e11d48"/><text x="${cx}" y="${H-9}" text-anchor="middle" font-size="10" fill="#667571">${mshort(k)}</text></g>`});
- return o+`<polyline pointer-events="none" fill="none" stroke="#14201e" stroke-width="2" stroke-linejoin="round" points="${ks.map((k,i)=>`${pl+sw*(i+.5)},${Y(sal[i])}`).join(' ')}"/>`+ks.map((k,i)=>`<circle pointer-events="none" cx="${pl+sw*(i+.5)}" cy="${Y(sal[i])}" r="3" fill="#14201e"/>`).join('')+'</svg>'}
+  o+=`<g data-g="month" data-v="${k}" style="cursor:pointer;opacity:${d?.3:1}"><title>${mlabel(k)}\nReceitas: ${brl(r)}\nDespesas: ${brl(dd)}\nSaldo: ${brl(r-dd)}</title><rect x="${cx-sw/2}" y="${pt}" width="${sw}" height="${H-pt-pb}" fill="transparent"/><rect x="${cx-bw-1.5}" y="${Y(r)}" width="${bw}" height="${Math.max(1,Y(0)-Y(r))}" rx="4" fill="url(#gR)" filter="url(#glw)"/><rect x="${cx+1.5}" y="${Y(dd)}" width="${bw}" height="${Math.max(1,Y(0)-Y(dd))}" rx="4" fill="url(#gD)" filter="url(#glw)"/><text x="${cx}" y="${H-8}" text-anchor="middle" font-size="9.5" fill="#667571">${mshort(k)}</text></g>`});
+ return o+`<polyline pointer-events="none" fill="none" stroke="#14201e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="${ks.map((k,i)=>`${pl+sw*(i+.5)},${Y(sal[i])}`).join(' ')}"/>`+ks.map((k,i)=>`<circle pointer-events="none" cx="${pl+sw*(i+.5)}" cy="${Y(sal[i])}" r="3" fill="#fff" stroke="#14201e" stroke-width="1.8"/>`).join('')+'</svg>'}
 function gSal(L){const bm={};L.forEach(x=>{const m=x.venc.slice(0,7);bm[m]=(bm[m]||0)+(x.tipo==='Receita'?x.valor:-x.valor)});
  const ks=Object.keys(bm).sort();if(!ks.length)return EMPTY;let c=0;const cum=ks.map(k=>c+=bm[k]),n=ks.length;
- const W=640,H=210,pl=44,pr=14,pt=12,pb=26,[Y,gr]=grid(W,H,pl,pr,pt,pb,Math.min(0,...cum),Math.max(1,...cum)),X=i=>n>1?pl+i*(W-pl-pr)/(n-1):(pl+W-pr)/2,e=Math.ceil(n/8);
- return`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">${gr}<path d="M${X(0)},${Y(0)} ${cum.map((v,i)=>`L${X(i)},${Y(v)}`).join(' ')} L${X(n-1)},${Y(0)}Z" fill="rgba(15,118,110,.13)"/><polyline fill="none" stroke="#0f766e" stroke-width="2.5" stroke-linejoin="round" points="${cum.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}"/>${cum.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="3.5" fill="#0f766e"><title>${mlabel(ks[i])}: ${brl(v)}</title></circle>${i%e===0?`<text x="${X(i)}" y="${H-9}" text-anchor="middle" font-size="10" fill="#667571">${mshort(ks[i])}</text>`:''}`).join('')}</svg>`}
+ const W=400,H=190,pl=38,pr=12,pt=10,pb=24,[Y,gr]=grid(W,H,pl,pr,pt,pb,Math.min(0,...cum),Math.max(1,...cum)),X=i=>n>1?pl+i*(W-pl-pr)/(n-1):(pl+W-pr)/2,e=Math.ceil(n/5);
+ return`<svg viewBox="0 0 ${W} ${H}">${GDEF}${gr}<path d="M${X(0)},${Y(0)} ${cum.map((v,i)=>`L${X(i)},${Y(v)}`).join(' ')} L${X(n-1)},${Y(0)}Z" fill="url(#gA)"/><polyline fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glw)" points="${cum.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}"/>${cum.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="3.2" fill="#fff" stroke="#0f766e" stroke-width="2"><title>${mlabel(ks[i])}: ${brl(v)}</title></circle>${i%e===0?`<text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="9.5" fill="#667571">${mshort(ks[i])}</text>`:''}`).join('')}</svg>`}
 function gDonut(rows){const tot=rows.reduce((s,r)=>s+r[1],0);if(!tot)return EMPTY;const C=2*Math.PI*60;let acc=0;
  const arcs=rows.map(([c,v],i)=>{const len=v/tot*C,o=`<circle cx="90" cy="90" r="60" fill="none" stroke="${PAL[i%8]}" stroke-width="26" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-acc}" transform="rotate(-90 90 90)" data-g="cat" data-v="${esc(c)}" style="cursor:pointer;opacity:${G.cat&&G.cat!==c?.25:1}"><title>${esc(c)}: ${brl(v)}</title></circle>`;acc+=len;return o}).join('');
  return`<div class="dn"><svg viewBox="0 0 180 180">${arcs}<text x="90" y="86" text-anchor="middle" font-size="11" fill="#667571">Total</text><text x="90" y="104" text-anchor="middle" font-size="15" font-weight="800" fill="#14201e">R$ ${kfmt(tot)}</text></svg><div class="lg2">${rows.map(([c,v],i)=>`<div class="lgr" data-g="cat" data-v="${esc(c)}" style="opacity:${G.cat&&G.cat!==c?.4:1}"><u style="background:${PAL[i%8]}"></u>${esc(c)}<b>${brl(v)} <em>${Math.round(v/tot*100)}%</em></b></div>`).join('')}</div></div>`}
@@ -455,7 +468,7 @@ function grender(){
  sr.forEach(x=>{const k=st(x);(sb[k]=sb[k]||{v:0,n:0}).v+=x.valor;sb[k].n++});
  $('#g_t5').textContent='Situação das '+P.toLowerCase();
  $('#g_sta').innerHTML=sr.length?`<div class="stk">${Object.keys(SL).filter(k=>sb[k]).map(k=>`<i data-g="status" data-v="${k}" title="${SL[k]}: ${brl(sb[k].v)}" style="flex:${sb[k].v};background:${SC[k]};opacity:${G.status&&G.status!==k?.3:1}"></i>`).join('')}</div>`+Object.keys(SL).map(k=>`<div class="lgr" data-g="status" data-v="${k}" style="opacity:${G.status&&G.status!==k?.4:1}"><u style="background:${SC[k]}"></u>${SL[k]} <em>${sb[k]?sb[k].n:0} lanç.</em><b>${brl(sb[k]?sb[k].v:0)}</b></div>`).join(''):EMPTY;
- $('#g_top').innerHTML=[...L].sort((a,b)=>b.valor-a.valor).slice(0,6).map(x=>`<div class="rk"><div><b style="font-weight:600">${esc(x.desc)}</b><small>${esc(x.cat)} · ${fd(x.venc)} · ${stLabel(x)}</small></div><span class="v ${x.tipo==='Receita'?'rec':'des'}">${x.tipo==='Receita'?'+':'−'} ${brl(x.valor)}</span></div>`).join('')||EMPTY;
+ $('#g_top').innerHTML=[...L].sort((a,b)=>b.valor-a.valor).slice(0,5).map(x=>`<div class="rk"><div><b style="font-weight:600">${esc(x.desc)}</b><small>${esc(x.cat)} · ${fd(x.venc)} · ${stLabel(x)}</small></div><span class="v ${x.tipo==='Receita'?'rec':'des'}">${x.tipo==='Receita'?'+':'−'} ${brl(x.valor)}</span></div>`).join('')||EMPTY;
  $('#g_sal').innerHTML=gSal(L);
 }
 $('#vG').addEventListener('click',e=>{
