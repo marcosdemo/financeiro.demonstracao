@@ -173,6 +173,21 @@ main{flex:1;min-height:0;overflow:auto;width:100%;display:flex;flex-direction:co
  .tbs td.act{order:13;grid-column:1/-1;display:flex;justify-content:flex-end;gap:6px;box-shadow:none;background:none;border-top:1px solid var(--line);padding-top:6px}
  .tbs td.empty{grid-column:1/-1}
 }
+
+/* ===== ajustes: mais linhas visíveis ===== */
+.trow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;max-width:100%}
+.trow .tabs{margin:0;min-width:0}
+.trow .btn{padding:8px 13px;white-space:nowrap}
+#vL.cmp .kpis,#vL.cmp .g2{display:none}
+@media(min-width:821px){
+ #vL>.tw{min-height:610px}
+ #vL .filters{margin:10px 0}
+ .tbs td{padding:8px 8px}.tbs th{padding:10px 8px}
+ .kpi{padding:11px 16px}.kpi b{font-size:21px;margin-top:2px}
+ .g2{margin-top:10px}.g2 .card{padding:12px 16px}.g2 .bar{margin-top:8px}
+ .months{height:104px;margin-top:6px}.mc .p{height:72px}
+}
+@media(max-width:820px){.trow{margin-top:10px}.trow .tabs{flex:1}}
 </style>
 </head>
 <body>
@@ -192,7 +207,7 @@ main{flex:1;min-height:0;overflow:auto;width:100%;display:flex;flex-direction:co
    <div class="leg"><span><u style="background:#0f766e"></u>Receitas</span><span><u style="background:#e11d48"></u>Despesas</span></div></div>
  </section>
 
- <div class="tabs"><button data-t="pendente" onclick="setTab('pendente')">Pendentes <em>0</em></button><button data-t="pago" onclick="setTab('pago')">Pagos / Recebidos <em>0</em></button><button data-t="" onclick="setTab('')">Todos <em>0</em></button></div>
+ <div class="trow"><div class="tabs"><button data-t="pendente" onclick="setTab('pendente')">Pendentes <em>0</em></button><button data-t="pago" onclick="setTab('pago')">Pagos / Recebidos <em>0</em></button><button data-t="" onclick="setTab('')">Todos <em>0</em></button></div><button class="btn" id="bsum" onclick="toggleSum()" title="Mostrar/ocultar indicadores e gráficos"></button></div>
  <div class="filters">
   <input id="q" type="search" placeholder="Pesquise qualquer coisa: descrição, valor, data, mês, conta, status…" oninput="render()" autocomplete="off" aria-label="Pesquisar em todas as colunas">
   <select id="fm" onchange="render()"></select>
@@ -526,6 +541,8 @@ $('#vG').addEventListener('click',e=>{
  grender();
 });
 
+function toggleSum(v){const e=$('#vL'),on=typeof v==='boolean'?v:!e.classList.contains('cmp');e.classList.toggle('cmp',on);$('#bsum').textContent=on?'▸ Mostrar resumo':'▾ Ocultar resumo';try{localStorage.setItem('fluxo_cmp',on?'1':'0')}catch(x){}}
+(function(){let v;try{v=localStorage.getItem('fluxo_cmp')}catch(x){}toggleSum(v===null||v===undefined?innerHeight<860:v==='1')})();
 months();render();
 </script>
 </body>
