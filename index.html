@@ -541,8 +541,8 @@ $('#vG').addEventListener('click',e=>{
  grender();
 });
 
-function toggleSum(v){const e=$('#vL'),on=typeof v==='boolean'?v:!e.classList.contains('cmp');e.classList.toggle('cmp',on);$('#bsum').textContent=on?'▸ Mostrar resumo':'▾ Ocultar resumo';try{localStorage.setItem('fluxo_cmp',on?'1':'0')}catch(x){}}
-(function(){let v;try{v=localStorage.getItem('fluxo_cmp')}catch(x){}toggleSum(v===null||v===undefined?innerHeight<860:v==='1')})();
+function toggleSum(v){const e=$('#vL'),click=typeof v!=='boolean',on=click?!e.classList.contains('cmp'):v;e.classList.toggle('cmp',on);$('#bsum').textContent=on?'▸ Mostrar resumo':'▾ Ocultar resumo';if(click)try{localStorage.setItem('fluxo_cmp2',on?'1':'0')}catch(x){}}
+(function(){let v;try{v=localStorage.getItem('fluxo_cmp2')}catch(x){}toggleSum(v==='1')})();
 months();render();
 </script>
 </body>
